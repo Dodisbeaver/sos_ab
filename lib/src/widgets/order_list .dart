@@ -24,7 +24,7 @@ class OrderList extends StatelessWidget {
             orders[index].cabin,
           ),
           subtitle: Text(
-            '${orders[index].service.length} books',
+            '${orders[index].service.length} Services',
           ),
           onTap: onTap != null ? () => onTap!(orders[index]) : null,
         ),

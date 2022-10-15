@@ -1,10 +1,12 @@
 import 'dart:convert';
+import 'order.dart';
 
 class Cabin {
   final int id;
   final String cabin;
   final String size;
   final String address;
+  final Order order;
   final int rent;
 
   Cabin(
@@ -13,6 +15,7 @@ class Cabin {
     this.address,
     this.rent,
     this.size,
+    this.order,
   );
 
   // factory Cabin.fromJson(Map<String, dynamic> json) {

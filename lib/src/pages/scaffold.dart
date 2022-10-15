@@ -23,21 +23,21 @@ class SosAbScaffold extends StatelessWidget {
         selectedIndex: selectedIndex,
         body: const SosAbScaffoldBody(),
         onDestinationSelected: (idx) {
-          if (idx == 0) routeState.go('/cabins');
+          if (idx == 0) routeState.go('/cabins/all');
           if (idx == 1) routeState.go('/orders');
           if (idx == 2) routeState.go('/services');
         },
         destinations: const [
           AdaptiveScaffoldDestination(
-            title: 'Cabins',
+            title: 'Stugor',
             icon: Icons.home,
           ),
           AdaptiveScaffoldDestination(
-            title: 'Orders',
+            title: 'Beställningar',
             icon: Icons.money,
           ),
           AdaptiveScaffoldDestination(
-            title: 'Services',
+            title: 'Service',
             icon: Icons.room_service,
           ),
         ],

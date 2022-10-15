@@ -39,7 +39,8 @@ class CabinDetailsScreen extends StatelessWidget {
               onPressed: () {
                 Navigator.of(context).push<void>(
                   MaterialPageRoute<void>(
-                    builder: (context) => OrderDetailsScreen(order: order!),
+                    builder: (context) =>
+                        OrderDetailsScreen(order: cabin!.order),
                   ),
                 );
               },

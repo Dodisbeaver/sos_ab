@@ -51,7 +51,7 @@ class TemplateRouteParser extends RouteInformationParser<ParsedRoute> {
     if (guard != null) {
       return guard(parsedRoute);
     }
-
+    print(parsedRoute);
     return parsedRoute;
   }
 

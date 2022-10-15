@@ -2,11 +2,8 @@ import 'dart:io';
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:sos_ab/src/pages/login_page.dart';
-import 'package:sos_ab/src/services/login-service.dart';
-import 'package:sos_ab/src/services/save-service.dart';
 import 'package:url_strategy/url_strategy.dart';
-import 'src/apps.dart';
+import 'src/app.dart';
 import 'package:window_size/window_size.dart';
 
 void main() {
@@ -21,7 +18,7 @@ const double windowHeight = 854;
 void setupWindow() {
   if (!kIsWeb && (Platform.isWindows || Platform.isLinux || Platform.isMacOS)) {
     WidgetsFlutterBinding.ensureInitialized();
-    setWindowTitle('Navigation and routing');
+    setWindowTitle('Stug och Städ Ab');
     setWindowMinSize(const Size(windowWidth, windowHeight));
     setWindowMaxSize(const Size(windowWidth, windowHeight));
     getCurrentScreen().then((screen) {

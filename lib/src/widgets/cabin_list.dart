@@ -19,9 +19,9 @@ class CabinList extends StatelessWidget {
           title: Text(
             cabins[index].cabin,
           ),
-          // subtitle: Text(
-          //   cabins[index].order,
-          // ),
+          subtitle: Text(
+            cabins[index].address,
+          ),
           onTap: onTap != null ? () => onTap!(cabins[index]) : null,
         ),
       );

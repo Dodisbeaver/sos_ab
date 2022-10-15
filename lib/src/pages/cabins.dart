@@ -5,97 +5,21 @@ import '../data.dart';
 import '../routing.dart';
 import '../widgets/cabin_list.dart';
 
-class CabinScreen extends StatefulWidget {
-  const CabinScreen({
-    super.key,
-  });
+class CabinScreen extends StatelessWidget {
+  final String title = 'Stugor';
 
-  @override
-  State<CabinScreen> createState() => _CabinScreenState();
-}
-
-class _CabinScreenState extends State<CabinScreen>
-    with SingleTickerProviderStateMixin {
-  late TabController _tabController;
-
-  @override
-  void initState() {
-    super.initState();
-    _tabController = TabController(length: 3, vsync: this)
-      ..addListener(_handleTabIndexChanged);
-  }
-
-  @override
-  void didChangeDependencies() {
-    super.didChangeDependencies();
-
-    final newPath = _routeState.route.pathTemplate;
-    if (newPath.startsWith('/cabins')) {
-      _tabController.index = 0;
-    } else if (newPath.startsWith('/cabins')) {
-      _tabController.index = 1;
-    } else if (newPath == '/cabins') {
-      _tabController.index = 2;
-    }
-  }
-
-  @override
-  void dispose() {
-    _tabController.removeListener(_handleTabIndexChanged);
-    super.dispose();
-  }
+  const CabinScreen({super.key});
 
   @override
   Widget build(BuildContext context) => Scaffold(
         appBar: AppBar(
-          title: const Text('Stugor'),
-          bottom: TabBar(
-            controller: _tabController,
-            tabs: const [
-              Tab(
-                text: 'Alla',
-                icon: Icon(Icons.holiday_village),
-              ),
-              Tab(
-                text: 'Nya(test)',
-                icon: Icon(Icons.new_releases),
-              ),
-              Tab(
-                text: 'Andra(test)',
-                icon: Icon(Icons.list),
-              ),
-            ],
-          ),
+          title: Text(title),
         ),
-        body: TabBarView(
-          controller: _tabController,
-          children: [
-            CabinList(
-              cabins: orderInstance.allCabins,
-              onTap: _handleBookTapped,
-            ),
-          ],
+        body: CabinList(
+          cabins: orderInstance.allCabins,
+          onTap: (cabin) {
+            RouteStateScope.of(context).go('/cabin/${cabin.id}');
+          },
         ),
       );
-
-  RouteState get _routeState => RouteStateScope.of(context);
-
-  void _handleBookTapped(Cabin cabin) {
-    _routeState.go('/cabin/${cabin.id}');
-  }
-
-  void _handleTabIndexChanged() {
-    switch (_tabController.index) {
-      case 1:
-        _routeState.go('/cabins');
-        break;
-      case 2:
-        _routeState.go('/cabins');
-        break;
-      case 0:
-      default:
-        _routeState.go('/cabins');
-        break;
-    }
-  }
 }

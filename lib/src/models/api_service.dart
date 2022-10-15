@@ -7,7 +7,6 @@ final orderInstance = CabinServices()
   ..addCabin(
       cabinName: "Stugan 1",
       address: "välkommenvägen 1",
-      orderCabin: "Stugan 1",
       createdBy: "john.doe@arcada.fi",
       serviceType: "Städning",
       serviceTime: DateTime.now(),
@@ -16,7 +15,6 @@ final orderInstance = CabinServices()
   ..addCabin(
       cabinName: "Stugan 2",
       address: "välkomin 2",
-      orderCabin: "Stugan 2",
       createdBy: "john.doe@arcada.fi",
       serviceType: "Borstning",
       serviceTime: DateTime.now(),
@@ -31,7 +29,6 @@ class CabinServices {
   void addCabin({
     required String cabinName,
     required String address,
-    required String orderCabin,
     required String createdBy,
     required String serviceType,
     required DateTime serviceTime,
@@ -39,15 +36,15 @@ class CabinServices {
     required String size,
   }) {
     var order = allOrders.firstWhere(
-      (orde) => orde.cabin == orderCabin,
+      (orde) => orde.cabin == cabinName,
       orElse: () {
         final value =
-            Order(allOrders.length, orderCabin, serviceTime, createdBy);
+            Order(allOrders.length, cabinName, serviceTime, createdBy);
         allOrders.add(value);
         return value;
       },
     );
-    var cabin = Cabin(allCabins.length, cabinName, address, rent, size);
+    var cabin = Cabin(allCabins.length, cabinName, address, rent, size, order);
     var service = Service(allServices.length, serviceType, cabinName);
 
     order.service.add(service);

@@ -50,7 +50,13 @@ class ServiceContent extends StatelessWidget {
               onPressed: () {
                 SosAbAuthScope.of(context).signOut();
               },
-              child: const Text('Sign out'),
+              child: const Text('Logga ut'),
+            ),
+            TextButton(
+              child: const Text('Gå direkt till /cabin/0 (RouteState)'),
+              onPressed: () {
+                RouteStateScope.of(context).go('/cabin/0');
+              },
             ),
             // Link(
             //   uri: Uri.parse('/book/0'),

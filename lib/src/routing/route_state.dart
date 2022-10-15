@@ -20,12 +20,14 @@ class RouteState extends ChangeNotifier {
 
   set route(ParsedRoute route) {
     if (_route == route) return;
-
+    print(_route);
     _route = route;
     notifyListeners();
   }
 
   Future<void> go(String route) async {
+    print(
+        await _parser.parseRouteInformation(RouteInformation(location: route)));
     this.route =
         await _parser.parseRouteInformation(RouteInformation(location: route));
   }

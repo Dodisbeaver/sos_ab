@@ -5,7 +5,6 @@ import 'package:sos_ab/src/models/api_service.dart';
 import '../auth.dart';
 import '../data.dart';
 import '../routing.dart';
-import '../pages/login_page.dart';
 import '../pages/sign_in.dart';
 import 'cabin_details.dart';
 import 'order_details.dart';
@@ -42,15 +41,17 @@ class _SosAbNavigatorState extends State<SosAbNavigator> {
     final pathTemplate = routeState.route.pathTemplate;
 
     Cabin? selectedCabin;
+    print(selectedCabin?.id);
     if (pathTemplate == '/cabin/:cabinId') {
+      print('$pathTemplate' ' pattthemp)');
       selectedCabin = orderInstance.allCabins.firstWhereOrNull(
           (b) => b.id.toString() == routeState.route.parameters['cabinId']);
     }
 
     Order? selectedOrder;
-    if (pathTemplate == '/order/:cabin') {
+    if (pathTemplate == '/order/:orderId') {
       selectedOrder = orderInstance.allOrders.firstWhereOrNull(
-          (b) => b.id.toString() == routeState.route.parameters['cabin']);
+          (b) => b.id.toString() == routeState.route.parameters['orderId']);
     }
 
     return Navigator(
@@ -60,7 +61,7 @@ class _SosAbNavigatorState extends State<SosAbNavigator> {
         // the /books or /authors tab in BookstoreScaffold.
         if (route.settings is Page &&
             (route.settings as Page).key == _cabinDetailsKey) {
-          routeState.go('/cabins');
+          routeState.go('/cabins/all');
         }
 
         if (route.settings is Page &&
@@ -80,7 +81,7 @@ class _SosAbNavigatorState extends State<SosAbNavigator> {
                 var signedIn = await authState.signIn(
                     credentials.username, credentials.password);
                 if (signedIn) {
-                  await routeState.go('/cabins');
+                  await routeState.go('/cabins/all');
                 }
               },
             ),
