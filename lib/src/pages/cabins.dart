@@ -87,14 +87,14 @@ class _BooksScreenState extends State<BooksScreen>
   void _handleTabIndexChanged() {
     switch (_tabController.index) {
       case 1:
-        _routeState.go('/books/new');
+        _routeState.go('/cabins');
         break;
       case 2:
-        _routeState.go('/books/all');
+        _routeState.go('/cabins');
         break;
       case 0:
       default:
-        _routeState.go('/books/popular');
+        _routeState.go('/cabins');
         break;
     }
   }
