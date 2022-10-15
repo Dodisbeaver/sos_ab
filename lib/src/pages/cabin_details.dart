@@ -19,7 +19,7 @@ class CabinDetailsScreen extends StatelessWidget {
     if (cabin == null) {
       return const Scaffold(
         body: Center(
-          child: Text('No book found.'),
+          child: Text('Ingen Stuga hittad'),
         ),
       );
     }
@@ -45,10 +45,10 @@ class CabinDetailsScreen extends StatelessWidget {
               },
             ),
             Link(
-              uri: Uri.parse('/order/${order!.id}'),
+              uri: Uri.parse('/order/${cabin!.cabin}'),
               builder: (context, followLink) => TextButton(
                 onPressed: followLink,
-                child: const Text('View author (Link)'),
+                child: const Text('Se stugans beställningar'),
               ),
             ),
           ],

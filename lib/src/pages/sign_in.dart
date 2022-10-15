@@ -54,14 +54,9 @@ class _SignInScreenState extends State<SignInScreen> {
                     padding: const EdgeInsets.all(16),
                     child: TextButton(
                       onPressed: () async {
-                        if (await attemptLogIn(_usernameController.text,
-                            _passwordController.text)) {
-                          widget.onSignIn(Credentials(
-                              _usernameController.value.text,
-                              _passwordController.value.text));
-                        } else {
-                          throw Exception("Kunde inte logga in");
-                        }
+                        widget.onSignIn(Credentials(
+                            _usernameController.value.text,
+                            _passwordController.value.text));
                       },
                       child: const Text('Sign in'),
                     ),

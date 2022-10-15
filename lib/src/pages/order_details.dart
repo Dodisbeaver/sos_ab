@@ -24,7 +24,7 @@ class OrderDetailsScreen extends StatelessWidget {
                 child: ServiceList(
                   services: order.service,
                   onTap: (cabin) {
-                    RouteStateScope.of(context).go('/cabin/${cabin.id}');
+                    RouteStateScope.of(context).go('/cabin/$cabin');
                   },
                 ),
               ),

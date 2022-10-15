@@ -29,20 +29,20 @@ class SosAbScaffoldBody extends StatelessWidget {
       key: navigatorKey,
       onPopPage: (route, dynamic result) => route.didPop(result),
       pages: [
-        if (currentRoute.pathTemplate.startsWith('/authors'))
+        if (currentRoute.pathTemplate.startsWith('/orders'))
           const FadeTransitionPage<void>(
-            key: ValueKey('authors'),
+            key: ValueKey('orders'),
             child: OrderScreen(),
           )
-        else if (currentRoute.pathTemplate.startsWith('/settings'))
+        else if (currentRoute.pathTemplate.startsWith('/services'))
           const FadeTransitionPage<void>(
-            key: ValueKey('settings'),
+            key: ValueKey('services'),
             child: ServicesScreen(),
           )
-        else if (currentRoute.pathTemplate.startsWith('/books') ||
+        else if (currentRoute.pathTemplate.startsWith('/cabins') ||
             currentRoute.pathTemplate == '/')
           const FadeTransitionPage<void>(
-            key: ValueKey('books'),
+            key: ValueKey('cabins'),
             child: BooksScreen(),
           )
 

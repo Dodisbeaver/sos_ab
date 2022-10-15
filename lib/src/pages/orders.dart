@@ -5,7 +5,7 @@ import '../routing.dart';
 import '../widgets/order_list .dart';
 
 class OrderScreen extends StatelessWidget {
-  final String title = 'Orders';
+  final String title = 'Beställningar';
 
   const OrderScreen({super.key});
 

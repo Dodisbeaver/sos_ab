@@ -42,15 +42,15 @@ class _SosAbNavigatorState extends State<SosAbNavigator> {
     final pathTemplate = routeState.route.pathTemplate;
 
     Cabin? selectedCabin;
-    if (pathTemplate == '/book/:bookId') {
+    if (pathTemplate == '/cabin/:cabinId') {
       selectedCabin = orderInstance.allCabins.firstWhereOrNull(
-          (b) => b.id.toString() == routeState.route.parameters['bookId']);
+          (b) => b.id.toString() == routeState.route.parameters['cabinId']);
     }
 
-    Order? selectedAuthor;
-    if (pathTemplate == '/author/:authorId') {
-      selectedAuthor = orderInstance.allOrders.firstWhereOrNull(
-          (b) => b.id.toString() == routeState.route.parameters['authorId']);
+    Order? selectedOrder;
+    if (pathTemplate == '/order/:cabin') {
+      selectedOrder = orderInstance.allOrders.firstWhereOrNull(
+          (b) => b.id.toString() == routeState.route.parameters['cabin']);
     }
 
     return Navigator(
@@ -60,12 +60,12 @@ class _SosAbNavigatorState extends State<SosAbNavigator> {
         // the /books or /authors tab in BookstoreScaffold.
         if (route.settings is Page &&
             (route.settings as Page).key == _cabinDetailsKey) {
-          routeState.go('/books/popular');
+          routeState.go('/cabins');
         }
 
         if (route.settings is Page &&
             (route.settings as Page).key == _orderDetailsKey) {
-          routeState.go('/authors');
+          routeState.go('/orders');
         }
 
         return route.didPop(result);
@@ -80,7 +80,7 @@ class _SosAbNavigatorState extends State<SosAbNavigator> {
                 var signedIn = await authState.signIn(
                     credentials.username, credentials.password);
                 if (signedIn) {
-                  await routeState.go('/books/popular');
+                  await routeState.go('/cabins');
                 }
               },
             ),
@@ -100,11 +100,11 @@ class _SosAbNavigatorState extends State<SosAbNavigator> {
                 cabin: selectedCabin,
               ),
             )
-          else if (selectedAuthor != null)
+          else if (selectedOrder != null)
             MaterialPage<void>(
               key: _orderDetailsKey,
               child: OrderDetailsScreen(
-                order: selectedAuthor,
+                order: selectedOrder,
               ),
             ),
         ],

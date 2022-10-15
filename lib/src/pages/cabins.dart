@@ -30,7 +30,7 @@ class _BooksScreenState extends State<BooksScreen>
     super.didChangeDependencies();
 
     final newPath = _routeState.route.pathTemplate;
-    if (newPath.startsWith('/books/popular')) {
+    if (newPath.startsWith('/cabins')) {
       _tabController.index = 0;
     } else if (newPath.startsWith('/books/new')) {
       _tabController.index = 1;
@@ -48,20 +48,20 @@ class _BooksScreenState extends State<BooksScreen>
   @override
   Widget build(BuildContext context) => Scaffold(
         appBar: AppBar(
-          title: const Text('Books'),
+          title: const Text('Stugor'),
           bottom: TabBar(
             controller: _tabController,
             tabs: const [
               Tab(
-                text: 'Popular',
+                text: 'Alla',
                 icon: Icon(Icons.people),
               ),
               Tab(
-                text: 'New',
+                text: 'Nya(test)',
                 icon: Icon(Icons.new_releases),
               ),
               Tab(
-                text: 'All',
+                text: 'Andra(test)',
                 icon: Icon(Icons.list),
               ),
             ],
