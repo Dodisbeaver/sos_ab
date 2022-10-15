@@ -43,7 +43,7 @@ class SosAbScaffoldBody extends StatelessWidget {
             currentRoute.pathTemplate == '/')
           const FadeTransitionPage<void>(
             key: ValueKey('cabins'),
-            child: BooksScreen(),
+            child: CabinScreen(),
           )
 
         // Avoid building a Navigator with an empty `pages` list when the

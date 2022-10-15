@@ -5,16 +5,16 @@ import '../data.dart';
 import '../routing.dart';
 import '../widgets/cabin_list.dart';
 
-class BooksScreen extends StatefulWidget {
-  const BooksScreen({
+class CabinScreen extends StatefulWidget {
+  const CabinScreen({
     super.key,
   });
 
   @override
-  State<BooksScreen> createState() => _BooksScreenState();
+  State<CabinScreen> createState() => _CabinScreenState();
 }
 
-class _BooksScreenState extends State<BooksScreen>
+class _CabinScreenState extends State<CabinScreen>
     with SingleTickerProviderStateMixin {
   late TabController _tabController;
 
@@ -32,9 +32,9 @@ class _BooksScreenState extends State<BooksScreen>
     final newPath = _routeState.route.pathTemplate;
     if (newPath.startsWith('/cabins')) {
       _tabController.index = 0;
-    } else if (newPath.startsWith('/books/new')) {
+    } else if (newPath.startsWith('/cabins')) {
       _tabController.index = 1;
-    } else if (newPath == '/books/all') {
+    } else if (newPath == '/cabins') {
       _tabController.index = 2;
     }
   }
@@ -54,7 +54,7 @@ class _BooksScreenState extends State<BooksScreen>
             tabs: const [
               Tab(
                 text: 'Alla',
-                icon: Icon(Icons.people),
+                icon: Icon(Icons.holiday_village),
               ),
               Tab(
                 text: 'Nya(test)',
