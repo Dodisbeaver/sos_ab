@@ -1,110 +1,110 @@
 import 'package:flutter/material.dart';
-
-import 'dart:html';
-
 import 'auth.dart';
 import 'routing.dart';
 import 'pages/navigator.dart';
 
-// class SosAb extends StatefulWidget {
-//   const SosAb({Key? key}) : super(key: key);
+class SosAb extends StatefulWidget {
+  const SosAb({super.key});
 
-//   @override
-//   _SosAbState createState() => _SosAbState();
-// }
+  @override
+  _SosAbState createState() => _SosAbState();
+}
 
+class _SosAbState extends State<SosAb> {
+  final _auth = SosAbAuth();
+  final _navigatorKey = GlobalKey<NavigatorState>();
+  late final RouteState _routeState;
+  late final SimpleRouterDelegate _routerDelegate;
+  late final TemplateRouteParser _routeParser;
 
+  @override
+  void initState() {
+    /// Configure the parser with all of the app's allowed path templates.
+    _routeParser = TemplateRouteParser(
+      allowedPaths: [
+        '/signin',
+        '/cabins',
+        '/settings',
+        '/services',
+        '/orders',
+      ],
+      guard: _guard,
+      initialRoute: '/signin',
+    );
 
-// class _SosAbState() extends State<SosAb> {
-  //TODO: AKTIVERA
-  // // final _auth = SosAbAuth();
-  // // final _navigatorKey = GlobalKey<NavigatorState>();
-  // // late final RouteState _routeState;
-  // // late final SimpleRouterDelegate _routerDelegate;
-  // // late final TemplateRouteParser _routeParser;
+    _routeState = RouteState(_routeParser);
 
-//  @override
-//   void initState() {
-//     /// Configure the parser with all of the app's allowed path templates.
-//     _routeParser = TemplateRouteParser(
-//       allowedPaths: [
-//         '/signin',
-//         '/cabins',
-//         '/settings',
-//         '/services',
-//         '/orders',
-//       ],
-//       guard: _guard,
-//       initialRoute: '/signin',
-//     );
+    _routerDelegate = SimpleRouterDelegate(
+      routeState: _routeState,
+      navigatorKey: _navigatorKey,
+      builder: (context) => SosAbNavigator(
+        navigatorKey: _navigatorKey,
+      ),
+    );
 
-//     _routeState = RouteState(_routeParser);
+    // Listen for when the user logs out and display the signin screen.
+    _auth.addListener(_handleAuthStateChanged);
 
-//     _routerDelegate = SimpleRouterDelegate(
-//       routeState: _routeState,
-//       navigatorKey: _navigatorKey,
-//       builder: (context) => BookstoreNavigator(
-//         navigatorKey: _navigatorKey,
-//       ),
-//     );
+    super.initState();
+  }
 
-//     // Listen for when the user logs out and display the signin screen.
-//     _auth.addListener(_handleAuthStateChanged);
+  @override
+  Widget build(BuildContext context) => RouteStateScope(
+      notifier: _routeState,
+      child: SosAbAuthScope(
+        notifier: _auth,
+        child: MaterialApp.router(
+          routerDelegate: _routerDelegate,
+          routeInformationParser: _routeParser,
+          theme: ThemeData(
+            pageTransitionsTheme: const PageTransitionsTheme(
+              builders: {
+                TargetPlatform.android: FadeUpwardsPageTransitionsBuilder(),
+                TargetPlatform.iOS: CupertinoPageTransitionsBuilder(),
+                TargetPlatform.linux: FadeUpwardsPageTransitionsBuilder(),
+                TargetPlatform.macOS: CupertinoPageTransitionsBuilder(),
+                TargetPlatform.windows: FadeUpwardsPageTransitionsBuilder(),
+              },
+            ),
+          ),
+        ),
+      ));
+  // {
 
-//     super.initState();
-//   }
+  // return MaterialApp(
+  //   title: "Stug och städ Ab",
+  //   home: Scaffold(
+  //     appBar: AppBar(title: const Text("Stug och Städ Ab")),
+  //   ),
+  // );
+  // }
 
-// @override
-//   Widget build(BuildContext context) => RouteStateScope(
-//         notifier: _routeState,
-//         child: SosAbAuthScope(
-//           notifier: _auth,
-//           child: MaterialApp.router(
-//             routerDelegate: _routerDelegate,
-//             routeInformationParser: _routeParser,
-//             // Revert back to pre-Flutter-2.5 transition behavior:
-//             // https://github.com/flutter/flutter/issues/82053
-//             theme: ThemeData(
-//               pageTransitionsTheme: const PageTransitionsTheme(
-//                 builders: {
-//                   TargetPlatform.android: FadeUpwardsPageTransitionsBuilder(),
-//                   TargetPlatform.iOS: CupertinoPageTransitionsBuilder(),
-//                   TargetPlatform.linux: FadeUpwardsPageTransitionsBuilder(),
-//                   TargetPlatform.macOS: CupertinoPageTransitionsBuilder(),
-//                   TargetPlatform.windows: FadeUpwardsPageTransitionsBuilder(),
-//                 },
-//               ),
-//             ),
-//           ),
-//         ),
-//       );
+  Future<ParsedRoute> _guard(ParsedRoute from) async {
+    final signedIn = _auth.signedIn;
+    final signInRoute = ParsedRoute('/signin', '/signin', {}, {});
 
-//         Future<ParsedRoute> _guard(ParsedRoute from) async {
-//     final signedIn = _auth.signedIn;
-//     final signInRoute = ParsedRoute('/signin', '/signin', {}, {});
+    // Go to /signin if the user is not signed in
+    if (!signedIn && from != signInRoute) {
+      return signInRoute;
+    }
+    // Go to /books if the user is signed in and tries to go to /signin.
+    else if (signedIn && from == signInRoute) {
+      return ParsedRoute('/cabins', '/cabins', {}, {});
+    }
+    return from;
+  }
 
-//     // Go to /signin if the user is not signed in
-//     if (!signedIn && from != signInRoute) {
-//       return signInRoute;
-//     }
-//     // Go to /cabins if the user is signed in and tries to go to /signin.
-//     else if (signedIn && from == signInRoute) {
-//       return ParsedRoute('/cabins', '/cabins', {}, {});
-//     }
-//     return from;
-//   }
+  void _handleAuthStateChanged() {
+    if (!_auth.signedIn) {
+      _routeState.go('/signin');
+    }
+  }
 
-//   void _handleAuthStateChanged() {
-//     if (!_auth.signedIn) {
-//       _routeState.go('/signin');
-//     }
-//   }
-
-//     @override
-//   void dispose() {
-//     _auth.removeListener(_handleAuthStateChanged);
-//     _routeState.dispose();
-//     _routerDelegate.dispose();
-//     super.dispose();
-//   }
-// }
+  @override
+  void dispose() {
+    _auth.removeListener(_handleAuthStateChanged);
+    _routeState.dispose();
+    _routerDelegate.dispose();
+    super.dispose();
+  }
+}
