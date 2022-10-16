@@ -15,7 +15,7 @@ class OrderDetailsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) => Scaffold(
         appBar: AppBar(
-          title: Text(order.cabin),
+          title: Text(order.cabin.toString()),
         ),
         body: Center(
           child: Column(

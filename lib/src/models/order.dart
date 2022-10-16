@@ -1,10 +1,11 @@
 import 'dart:convert';
 
+import 'package:sos_ab/src/models/cabin.dart';
 import 'package:sos_ab/src/models/service.dart';
 
 class Order {
   final int id;
-  final String cabin;
+  final Cabin cabin;
   final service = <Service>[];
   final DateTime serviceTime = DateTime.now();
 

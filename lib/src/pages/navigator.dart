@@ -1,6 +1,7 @@
 import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
-import 'package:sos_ab/src/models/api_service.dart';
+import 'package:sos_ab/src/models/cabin_library.dart';
+import 'package:sos_ab/src/services/api-service.dart';
 
 import '../auth.dart';
 import '../data.dart';
@@ -42,15 +43,16 @@ class _SosAbNavigatorState extends State<SosAbNavigator> {
 
     Cabin? selectedCabin;
     print(selectedCabin?.id);
+
     if (pathTemplate == '/cabin/:cabinId') {
       print('$pathTemplate' ' pattthemp)');
-      selectedCabin = orderInstance.allCabins.firstWhereOrNull(
+      selectedCabin = cabinsInstances.allCabins.firstWhereOrNull(
           (b) => b.id.toString() == routeState.route.parameters['cabinId']);
     }
 
     Order? selectedOrder;
     if (pathTemplate == '/order/:orderId') {
-      selectedOrder = orderInstance.allOrders.firstWhereOrNull(
+      selectedOrder = cabinsInstances.allOrders.firstWhereOrNull(
           (b) => b.id.toString() == routeState.route.parameters['orderId']);
     }
 

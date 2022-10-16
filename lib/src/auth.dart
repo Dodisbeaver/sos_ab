@@ -1,6 +1,7 @@
 import 'package:flutter/widgets.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'services/login-service.dart';
+import 'services/api-service.dart';
 
 class SosAbAuth extends ChangeNotifier {
   bool _signedIn = false;
@@ -26,6 +27,7 @@ class SosAbAuth extends ChangeNotifier {
     //   notifyListeners();
     //   return _signedIn;
     // }
+    populateCabin();
     _signedIn = true;
     return _signedIn;
   }
@@ -47,4 +49,8 @@ class SosAbAuthScope extends InheritedNotifier<SosAbAuth> {
 
   static SosAbAuth of(BuildContext context) =>
       context.dependOnInheritedWidgetOfExactType<SosAbAuthScope>()!.notifier!;
+}
+
+void populateCabin() async {
+  apiService();
 }

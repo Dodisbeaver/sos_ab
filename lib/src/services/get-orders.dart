@@ -6,7 +6,7 @@ import '../models/cabin.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:http/http.dart' as http;
 
-Future<List<dynamic>> fetchCabins(uri) async {
+Future<List<dynamic>> fetchOrders(uri) async {
   final getToken = await SharedPreferences.getInstance();
   final jwt = await getToken.getString('token');
   final resp = await http.get(

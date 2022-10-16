@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../models/api_service.dart';
+import '../models/cabin_library.dart';
 import '../routing.dart';
 import '../widgets/order_list .dart';
 
@@ -15,7 +15,7 @@ class OrderScreen extends StatelessWidget {
           title: Text(title),
         ),
         body: OrderList(
-          orders: orderInstance.allOrders,
+          orders: cabinsInstances.allOrders,
           onTap: (order) {
             RouteStateScope.of(context).go('/order/${order.id}');
           },

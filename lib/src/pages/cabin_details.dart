@@ -9,12 +9,12 @@ import '../models/service_library.dart';
 
 class CabinDetailsScreen extends StatelessWidget {
   final Cabin? cabin;
-  // final Order? order;
+  final Order? order;
 
   const CabinDetailsScreen({
     super.key,
     this.cabin,
-    // this.order,
+    this.order,
   });
 
   @override
@@ -44,8 +44,7 @@ class CabinDetailsScreen extends StatelessWidget {
               onPressed: () {
                 Navigator.of(context).push<void>(
                   MaterialPageRoute<void>(
-                    builder: (context) =>
-                        OrderDetailsScreen(order: cabin!.order),
+                    builder: (context) => OrderDetailsScreen(order: order!),
                   ),
                 );
               },
@@ -63,8 +62,8 @@ class CabinDetailsScreen extends StatelessWidget {
               child: ServiceList(
                 services: serviceInstance.allServices,
                 onTap: (service) {
-                  cabin!.order.service.add(service);
-                  print(cabin!.order.service.length);
+                  // cabin!.order.service.add(service);
+                  // print(cabin!.order.service.length);
                   // print(order!.service.length);
                   // order!.service.add(service);
                 },

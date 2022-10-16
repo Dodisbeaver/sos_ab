@@ -21,7 +21,7 @@ class OrderList extends StatelessWidget {
         itemCount: orders.length,
         itemBuilder: (context, index) => ListTile(
           title: Text(
-            orders[index].cabin,
+            orders[index].serviceTime.toString(),
           ),
           subtitle: Text(
             '${orders[index].service.length} Services',
