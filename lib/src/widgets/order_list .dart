@@ -24,7 +24,7 @@ class OrderList extends StatelessWidget {
             orders[index].serviceTime.toString(),
           ),
           subtitle: Text(
-            '${orders[index].service.length} Services',
+            '${orders[index].serviceType}',
           ),
           onTap: onTap != null ? () => onTap!(orders[index]) : null,
         ),

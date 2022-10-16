@@ -15,20 +15,11 @@ class OrderDetailsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) => Scaffold(
         appBar: AppBar(
-          title: Text(order.cabin.toString()),
+          title: Text(order.cabinId.toString()),
         ),
         body: Center(
           child: Column(
-            children: [
-              Expanded(
-                child: ServiceList(
-                  services: order.service,
-                  onTap: (service) {
-                    RouteStateScope.of(context).go('/service/${service.id}');
-                  },
-                ),
-              ),
-            ],
+            children: [Text(order.serviceType), Text(order.serviceTime)],
           ),
         ),
       );
