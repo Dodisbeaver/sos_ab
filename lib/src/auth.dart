@@ -10,7 +10,8 @@ class SosAbAuth extends ChangeNotifier {
 
   Future<void> signOut() async {
     await Future<void>.delayed(const Duration(milliseconds: 200));
-    // Sign out.
+    final eraseToken = await SharedPreferences.getInstance();
+    eraseToken.clear();
     _signedIn = false;
     notifyListeners();
   }
@@ -22,7 +23,7 @@ class SosAbAuth extends ChangeNotifier {
     var jwt = await attemptLogIn(username, password);
     print(jwt);
 
-    if (jwt != null) {
+    if (jwt) {
       _signedIn = true;
       notifyListeners();
       populateCabin();
