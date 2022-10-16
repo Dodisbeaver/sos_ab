@@ -6,13 +6,11 @@ class Order {
   final int id;
   final String cabin;
   final service = <Service>[];
-  final DateTime serviceTime;
-  final String createdBy;
+  final DateTime serviceTime = DateTime.now();
+
   Order(
     this.id,
     this.cabin,
-    this.serviceTime,
-    this.createdBy,
   );
 
   // factory Order.fromJson(Map<String, dynamic> json) {

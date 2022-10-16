@@ -4,20 +4,23 @@ import 'package:url_launcher/link.dart';
 
 import '../data.dart';
 import 'order_details.dart';
-import '../models/api_service.dart';
+import '../models/cabin_library.dart';
+import '../models/service_library.dart';
 
 class CabinDetailsScreen extends StatelessWidget {
   final Cabin? cabin;
-  final Order? order;
+  // final Order? order;
 
   const CabinDetailsScreen({
     super.key,
     this.cabin,
-    this.order,
+    // this.order,
   });
 
   @override
   Widget build(BuildContext context) {
+    const String serviceText = "Tjänster";
+
     if (cabin == null) {
       return const Scaffold(
         body: Center(
@@ -47,9 +50,25 @@ class CabinDetailsScreen extends StatelessWidget {
                 );
               },
             ),
+            SizedBox(
+              width: 100,
+              child: Text(
+                serviceText,
+                style: Theme.of(context).textTheme.headlineSmall,
+              ),
+            ),
             Expanded(
-                child: ServiceList(
-              services: orderInstance.allServices,
+                child: SizedBox(
+              width: 100,
+              child: ServiceList(
+                services: serviceInstance.allServices,
+                onTap: (service) {
+                  cabin!.order.service.add(service);
+                  print(cabin!.order.service.length);
+                  // print(order!.service.length);
+                  // order!.service.add(service);
+                },
+              ),
             ))
             // Link(
             //   uri: Uri.parse('/order/${cabin!.cabin}'),
