@@ -14,9 +14,7 @@ Future<List<dynamic>> fetchOrders(uri) async {
   final resp = await http.get(
     Uri.parse("$uri/orders/"),
     headers: {
-      // 'Authorization': 'Bearer $jwt',
-      'Authorization':
-          'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2MzMyYWUwNzkyNWYzODI1NTdlYTAyZTgiLCJlbWFpbCI6ImpvaG4uZG9lQGFyY2FkYS5maSIsImlhdCI6MTY2NTkxMDYyMCwiZXhwIjoxNjY1OTk3MDIwfQ.oU6nrIbecDoZIZYmX-q4Vuy5uJnx8H_-KZ57FK4zK34',
+      'Authorization': 'Bearer $jwt',
       'Content-Type': 'application/json',
       'Accept': 'application/json',
     },

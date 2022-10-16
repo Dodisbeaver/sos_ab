@@ -4,7 +4,7 @@ import 'package:sos_ab/src/services/get-orders.dart';
 import '../data.dart';
 import 'get-cabin.dart';
 
-const url = "http://localhost:3030";
+const url = "https://school-wom-project2.azurewebsites.net";
 Future apiService() async {
   final cabinJson = await fetchCabins(url);
   final orderJson = await fetchOrders(url);

@@ -3,7 +3,7 @@ import 'order.dart';
 import 'service.dart';
 import '../services/get-cabin.dart';
 
-const url = "http://localhost:3030";
+// const url = "http://localhost:3030";
 
 final cabinsInstances = CabinServices();
 
@@ -18,9 +18,9 @@ final cabinsInstances = CabinServices();
 //     rent: 1200,
 //     size: "Gigantisk");
 
-Future goGetCabins() async {
-  return await fetchCabins(url);
-}
+// Future goGetCabins() async {
+//   return await fetchCabins(url);
+// }
 
 class CabinServices {
   final List<Cabin> allCabins = [];

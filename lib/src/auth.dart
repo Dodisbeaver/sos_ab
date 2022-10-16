@@ -19,16 +19,16 @@ class SosAbAuth extends ChangeNotifier {
     await Future<void>.delayed(const Duration(milliseconds: 200));
     //INLOGGNING
     // // Sign in.
-    // var jwt = await attemptLogIn(username, password);
-    // print(jwt);
+    var jwt = await attemptLogIn(username, password);
+    print(jwt);
 
-    // if (jwt != null) {
-    //   _signedIn = true;
-    //   notifyListeners();
-    //   return _signedIn;
-    // }
-    populateCabin();
-    _signedIn = true;
+    if (jwt != null) {
+      _signedIn = true;
+      notifyListeners();
+      populateCabin();
+      return _signedIn;
+    }
+
     return _signedIn;
   }
 

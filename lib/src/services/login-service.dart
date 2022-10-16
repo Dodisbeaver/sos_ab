@@ -3,7 +3,7 @@ import 'package:sos_ab/src/services/save-service.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 
-var serverIP = 'http://localhost:3030';
+var serverIP = 'https://schoolproject2.azurewebsites.net/';
 const bool isLogged = false;
 
 Future attemptLogIn(String username, String password) async {
