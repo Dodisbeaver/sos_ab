@@ -23,8 +23,8 @@ class OrderDetailsScreen extends StatelessWidget {
               Expanded(
                 child: ServiceList(
                   services: order.service,
-                  onTap: (cabin) {
-                    RouteStateScope.of(context).go('/cabin/$cabin');
+                  onTap: (service) {
+                    RouteStateScope.of(context).go('/service/${service.id}');
                   },
                 ),
               ),

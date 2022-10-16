@@ -61,7 +61,7 @@ class _SosAbNavigatorState extends State<SosAbNavigator> {
         // the /books or /authors tab in BookstoreScaffold.
         if (route.settings is Page &&
             (route.settings as Page).key == _cabinDetailsKey) {
-          routeState.go('/cabins/all');
+          routeState.go('/cabins');
         }
 
         if (route.settings is Page &&
@@ -81,7 +81,7 @@ class _SosAbNavigatorState extends State<SosAbNavigator> {
                 var signedIn = await authState.signIn(
                     credentials.username, credentials.password);
                 if (signedIn) {
-                  await routeState.go('/cabins/all');
+                  await routeState.go('/cabins');
                 }
               },
             ),

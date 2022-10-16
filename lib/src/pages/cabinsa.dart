@@ -30,7 +30,7 @@ class _CabinScreenState extends State<CabinScreen>
     super.didChangeDependencies();
 
     final newPath = _routeState.route.pathTemplate;
-    if (newPath.startsWith('/cabins/all')) {
+    if (newPath.startsWith('/cabins')) {
       _tabController.index = 0;
     }
     //  else if (newPath.startsWith('/cabins/new')) {
@@ -89,7 +89,7 @@ class _CabinScreenState extends State<CabinScreen>
   void _handleTabIndexChanged() {
     switch (_tabController.index) {
       case 1:
-        _routeState.go('/cabins/all');
+        _routeState.go('/cabins');
         break;
       // case 2:
       //   _routeState.go('/cabins/new');

@@ -23,18 +23,12 @@ class _SosAbState extends State<SosAb> {
     _routeParser = TemplateRouteParser(
       allowedPaths: [
         '/signin',
-        '/cabins/all',
-        '/services',
         '/orders',
-        'cabin/cabinId',
-        'order/orderId',
-        'service/serviceId',
-        // '/settings',
-        // '/books/new',
-        // '/books/all',
-        // '/books/popular',
-        // '/book/:bookId',
-        // '/author/:authorId',
+        '/services',
+        '/cabin/:cabinId',
+        '/order/:orderId',
+        '/service/:serviceId',
+        '/cabins',
       ],
       guard: _guard,
       initialRoute: '/signin',
@@ -97,7 +91,7 @@ class _SosAbState extends State<SosAb> {
     }
     // Go to /books if the user is signed in and tries to go to /signin.
     else if (signedIn && from == signInRoute) {
-      return ParsedRoute('/cabins/all', '/cabins/all', {}, {});
+      return ParsedRoute('/cabins', '/cabins', {}, {});
     }
     return from;
   }

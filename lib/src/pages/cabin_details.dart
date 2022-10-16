@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:sos_ab/src/widgets/service_list.dart';
 import 'package:url_launcher/link.dart';
 
 import '../data.dart';
 import 'order_details.dart';
+import '../models/api_service.dart';
 
 class CabinDetailsScreen extends StatelessWidget {
   final Cabin? cabin;
@@ -45,13 +47,17 @@ class CabinDetailsScreen extends StatelessWidget {
                 );
               },
             ),
-            Link(
-              uri: Uri.parse('/order/${cabin!.cabin}'),
-              builder: (context, followLink) => TextButton(
-                onPressed: followLink,
-                child: const Text('Se stugans beställningar'),
-              ),
-            ),
+            Expanded(
+                child: ServiceList(
+              services: orderInstance.allServices,
+            ))
+            // Link(
+            //   uri: Uri.parse('/order/${cabin!.cabin}'),
+            //   builder: (context, followLink) => TextButton(
+            //     onPressed: followLink,
+            //     child: const Text('Se stugans beställningar'),
+            //   ),
+            // ),
           ],
         ),
       ),

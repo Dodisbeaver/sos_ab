@@ -3,6 +3,7 @@ import 'package:quiver/core.dart';
 
 import 'parser.dart';
 
+/// A route path that has been parsed by [TemplateRouteParser].
 class ParsedRoute {
   final String path;
 
